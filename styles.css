@@ -1,0 +1,249 @@
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden; /* Mantiene la experiencia de app de una sola pantalla */
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Pantallas */
+.pantalla {
+    width: 100%;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye espacio equitativamente */
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.pantalla::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); /* Sutil para resaltar el contenido */
+    z-index: -1;
+}
+
+.pantalla.activa {
+    display: flex;
+}
+
+/* --- PANTALLA INICIAL --- */
+#pantallaInicial {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    animation: gradientShift 5s ease infinite;
+    justify-content: center;
+    gap: 30px;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    50% { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+}
+
+.titulo-inicial {
+    font-size: clamp(2rem, 8vw, 4rem);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.imagen-regalo {
+    width: 100%;
+    max-width: clamp(200px, 40vh, 400px);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.05); }
+}
+
+.btn-abrir {
+    padding: 15px 50px;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.btn-abrir:hover { transform: scale(1.1); }
+
+/* --- PANTALLA CUMPLEAÑOS (CORREGIDA) --- */
+#pantallaCumpleanos {
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%);
+    animation: celebrationGradient 6s ease infinite;
+}
+
+@keyframes celebrationGradient {
+    0%, 100% { background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fab1a0 100%); }
+    33% { background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 50%, #fd79a8 100%); }
+    66% { background: linear-gradient(135deg, #55efc4 0%, #81ecec 50%, #74b9ff 100%); }
+}
+
+.titulo-cumpleanos {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+
+    text-align: center;
+
+    font-weight: bold;
+
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+
+    text-shadow:
+
+        4px 3px 0 #0f9ea5,
+
+        6px 6px 0 #ffffff,
+
+        9px 9px 20px rgba(0, 0, 0, 0.5);
+
+    animation: partyText 2s ease-in-out infinite;
+
+    margin-top: 20px;
+
+    background: rgba(234,208,238,0.5);
+
+    padding: 20px 40px;
+
+    border-radius: 20px;
+}
+
+/* --- EL CARRUSEL --- */
+.carrusel-container {
+    flex: 1; /* Ocupa todo el espacio disponible entre título y regalo */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.carrusel {
+    width: 100%;
+}
+
+.carrusel-pista {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: desplazamientoInfinito 25s linear infinite;
+}
+/* --- ESTILO PARA IMÁGENES COMPLETAS --- */
+
+.carrusel-item {
+    height: 45vh; 
+    min-height: 250px;
+    max-height: 500px;
+    aspect-ratio: 4/5; 
+    flex-shrink: 0;
+    border-radius: 15px;
+    
+    /* Fondo oscuro o un degradado para los espacios vacíos */
+    background: #1a1a1a; 
+    
+    padding: 0; /* Quitamos el padding para que el fondo rellene todo */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrusel-item img {
+    /* 'contain' asegura que la imagen se vea completa sin cortes */
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    z-index: 2;
+    position: relative;
+}
+
+/* OPCIONAL: Efecto de fondo borroso para rellenar los espacios */
+/* Esto crea una copia de la imagen detrás, borrosa, para que no queden barras negras */
+.carrusel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Aquí tendrías que usar la misma imagen de fondo si usaras inline styles, 
+       pero por ahora pongamos un brillo sutil para que se vea profesional */
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.5) 100%);
+    z-index: 1;
+}
+
+@keyframes desplazamientoInfinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- REGALO ABIERTO --- */
+.regalo-abierto-container {
+    height: 15vh;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.imagen-regalo-abierto {
+    height: 100%;
+    width: auto;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+    animation: aparecer 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes aparecer {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- RESPONSIVE ADICIONAL --- */
+@media (max-width: 480px) {
+    .carrusel-item { height: 40vh; }
+    .titulo-cumpleanos { padding: 10px; font-size: 1.8rem; }
+}
+
+@media (max-height: 600px) {
+    .titulo-cumpleanos { font-size: 1.2rem; }
+    .regalo-abierto-container { height: 10vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carrusel-pista, .imagen-regalo, .titulo-inicial { animation: none; }
+}

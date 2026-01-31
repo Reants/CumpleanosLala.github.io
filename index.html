@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Lala!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla inicial con regalo -->
+    <div id="pantallaInicial" class="pantalla activa">
+        <h1 class="titulo-inicial">Una cajita de momentos felices solo para tí</h1>
+        <div class="regalo-container">
+            <!-- Aquí va tu imagen del regalo -->
+            <img src="Regalo_cerrado.png" alt="Regalo" class="imagen-regalo">
+        </div>
+        <button id="btnAbrir" class="btn-abrir">¡Ábreme!</button>
+    </div>
+
+    <!-- Pantalla de cumpleaños -->
+    <div id="pantallaCumpleanos" class="pantalla">
+        <h1 class="titulo-cumpleanos">¡Feliz Cumpleaños Lala!</h1>
+        
+        <div class="carrusel-container">
+            <div class="carrusel">
+                <div class="carrusel-pista" id="carruselPista">
+                    <!-- Reemplaza estas imágenes con tus propias fotos -->
+                    <div class="carrusel-item">
+                        <img src="Foto-1.jpeg" alt="Celebración 1">
+                    </div>
+                    <div class="carrusel-item">
+                        <img src="Imagen-2.png" alt="Celebración 2">
+                    </div>
+                    <div class="carrusel-item">
+                        <img src="Foto-3.jpeg" alt="Celebración 3">
+                    </div>
+                    <div class="carrusel-item">
+                        <img src="Foto-4.jpeg" alt="Celebración 4">
+                    </div>
+                    <div class="carrusel-item">
+                        <img src="Foto-5.jpeg" alt="Celebración 5">
+                    </div>
+                    <div class="carrusel-item">
+                        <img src="Foto-6.jpeg" alt="Celebración 5">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="regalo-abierto-container">
+            <!-- Aquí va tu imagen del regalo abierto -->
+            <img src="Regalo_abierto.png" alt="Regalo Abierto" class="imagen-regalo-abierto">
+        </div>
+    </div>
+
+    <!-- Audio de fondo -->
+    <audio id="audioFondo" loop>
+        <!-- Coloca aquí tu archivo de audio -->
+        <source src="Canción.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
